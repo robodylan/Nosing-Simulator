@@ -14,7 +14,7 @@ namespace Nosing_Simulator
 		public static bool isFailure = false;
 		public static bool isFirstRun = true;
 		public static int finalScore = 0;
-		public static Font font;
+		public static Font basicFont;
 
 		public Game(uint w, uint h, string title)
 		{
@@ -40,7 +40,7 @@ namespace Nosing_Simulator
 			Overlay = new Sprite(new Texture(new Image("Content/Overlay.png")), new IntRect(0, 0, 800, 600));
 			failScreen = new Sprite(new Texture(new Image("Content/failScreen.png")));
 			Console.WriteLine("Loaded Background, Overlay, and Failure Screen");
-			font = new Font("Content/Animated.ttf");
+			basicFont = new Font("Content/Animated.ttf");
 			Console.WriteLine("Loaded Fonts");
 			Shoulder.Load();
 			Nose.Load();
@@ -49,6 +49,7 @@ namespace Nosing_Simulator
 			window.KeyPressed += Reset;
 			window.SetFramerateLimit(60);
 			window.SetMouseCursorVisible(false);
+            window.InternalSetMousePosition(new Vector2i(650,300));
 			Console.WriteLine("Setup Window");
 			//On completion of loading and setting assets
 			Console.WriteLine("Game Loaded");
@@ -69,23 +70,23 @@ namespace Nosing_Simulator
 			Nose.X = MouseX;
 			Nose.sprite.Position = new Vector2f(Nose.X, 300 + Nose.Y);
 			Shoulder.Move();
-			Shoulder.sprite.Position = new Vector2f(Shoulder.X, 0);
+			Shoulder.sprite.Position = new Vector2f(Shoulder.X, Shoulder.Y);
 			/* Draw Images */
 			window.Draw(BG); //Background
 			window.Draw(Shoulder.sprite); //Shoulder
 			window.Draw(Nose.sprite); //Nose
 			window.Draw(Overlay);
 			//If Player Lost, Show Reset Screen
-			if (isFailure && !isFirstRun)
+			if (isFailure)
 			{
 				window.Draw(failScreen);
 			}
 			else
 			{
-				isFirstRun = false;
 				finalScore = Nose.Touches;
 			}
 			//Draw Score
+            window.Draw(new Text("Score: " + finalScore, basicFont));
 			//Ouput Variables
 			Console.WriteLine("Nose Position: " + Nose.X);
 			Console.WriteLine("Shoulder Sensitivity: " + Shoulder.Sensitivity);
@@ -104,7 +105,7 @@ namespace Nosing_Simulator
 				Console.WriteLine("You are touching him!");
 				Nose.Touches++;
 				Shoulder.Sensitivity -= .1f;
-				new Music("Content/ScoreUp.ogg").Play();
+				if(!isFailure){new Music("Content/ScoreUp.ogg").Play();}
 			}
 		}
 

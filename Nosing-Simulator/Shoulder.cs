@@ -17,8 +17,7 @@ namespace Nosing_Simulator
 			sprite = new Sprite(new Texture(new Image("Content/Shoulder.png")), new IntRect(0, 0, 800, 600));
 			Console.WriteLine("Shoulder Sprite Loaded");
 			//Set Shoulder Variables
-			Sensitivity = 20;
-			Y = -100;
+            Sensitivity = 20;
 			Console.WriteLine("Set Shoulder Variables");
 		}
 
