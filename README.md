@@ -17,5 +17,8 @@ Triple AAA ultimate awesome game of awesomeness. You cant believe your eyes. Its
 * Real-Time Outlines
 * Awesome Shader effects
 * A true challenge for casual and core gamers
+* Awesome Shaders (WIP)
+* Professional GUI System (WIP)
+* Next-Gen Particle system computed on the CPU (WIP)
 
 8/10 IGN - Awful game
