@@ -11,7 +11,7 @@ namespace Nosing_Simulator
         public static Game G;
         static void Main(string[] args)
         {
-            G = new Game(800,600,"Nosing Simulator");
+            G = new Game(800,600,"Nosing Simulator V0.7.2");
             Console.WriteLine("Loading New Game");
             G.Start();
         }

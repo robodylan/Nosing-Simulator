@@ -14,7 +14,7 @@ namespace Nosing_Simulator
     {
         public static int Proximity,X,Y,Jitter,Offset;
         public static Sprite sprite;
-
+        public static int Touches;
         public static void Load()
         {
             //Load nose sprite

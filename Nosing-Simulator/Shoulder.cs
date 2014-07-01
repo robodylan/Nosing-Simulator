@@ -14,7 +14,7 @@ namespace Nosing_Simulator
     {
         public static int Sensitivity, X, Y = 0;
         public static Sprite sprite;
-        public static float moveTo = 500;
+        public static float moveTo = -30;
         public static void Load()
         {
             //Load Shoulder Sprite
@@ -22,6 +22,7 @@ namespace Nosing_Simulator
             Console.WriteLine("Shoulder Sprite Loaded");
             //Set Shoulder Variables
             Sensitivity = 20;
+            Y = -100;
             Console.WriteLine("Set Shoulder Variables");
         }
 
@@ -35,12 +36,12 @@ namespace Nosing_Simulator
                 }
                 else
                 {
-                    X++;
+                    X--;
                 }
             }
             else
             {
-                moveTo = 100;
+                moveTo = new Random(DateTime.Now.Millisecond).Next(-40,0);
             }
         }
     }

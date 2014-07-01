@@ -16,12 +16,10 @@ namespace Nosing_Simulator
         public static Vector2i mouseOffset;
         public RenderWindow window;
         public static Sprite BG, Overlay;
-        public static bool lose, win = false;
         public Game(uint w, uint h, string title)
         {
             window = new RenderWindow(new VideoMode(w, h), title);
         }
-
         public void Start()
         {
             //Load and Set Assets
@@ -34,6 +32,9 @@ namespace Nosing_Simulator
             window.MouseMoved += MouseInput;
             window.SetFramerateLimit(60);
             window.SetMouseCursorVisible(false);
+            Console.WriteLine("Setup Window");
+            //On completion of loading and setting assets
+            Console.WriteLine("Game Loaded");
             //Set Mouse Offset
             mouseOffset = new Vector2i(MouseX, MouseY);
             while(window.IsOpen())
@@ -42,9 +43,6 @@ namespace Nosing_Simulator
                 window.DispatchEvents();
                 Draw();
                 window.Display();
-                //Check if player has won or lost
-                checkWin();
-                checkLose();
             }
         }
 
@@ -67,23 +65,38 @@ namespace Nosing_Simulator
             MouseY = e.Y;
             Console.Clear();
             Console.WriteLine("Player Position: " + Nose.X);
-            if (lose)
+            //Check If Player Lost
+            if (isTooFar())
             {
-                Console.WriteLine("Player Lost");
+                Console.WriteLine("Too Far!");
             }
-        }
-        public static void checkWin()
-        {
-        }
-        public static void checkLose()
-        {
-            if(Nose.X < 484 - Shoulder.Sensitivity)
+            //Check If Player Is Touching Shoulder
+            if(isTouching())
             {
-                lose = true;
+                Console.WriteLine("You are touching him!");
+            }
+
+        }
+        public static bool isTouching()
+        {
+            if( Nose.X < 484 + Shoulder.X + 5 && Nose.X > 484 + Shoulder.X - 5)
+            {
+                return true;
             }
             else
             {
-                lose = false;
+                return false;
+            }
+        }
+        public static bool isTooFar()
+        {
+            if(Nose.X < 484 - Shoulder.Sensitivity + Shoulder.X)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
