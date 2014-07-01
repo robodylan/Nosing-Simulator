@@ -12,9 +12,11 @@ namespace Nosing_Simulator
 {
     class Shoulder
     {
-        public static int Sensitivity, X, Y = 0;
+        public static int Y = 0;
+        public static float Speed = 1f;
+        public static float Sensitivity = 10f;
         public static Sprite sprite;
-        public static float moveTo = -30;
+        public static float moveTo, X;
         public static void Load()
         {
             //Load Shoulder Sprite
@@ -32,11 +34,11 @@ namespace Nosing_Simulator
             {
                 if(X < moveTo)
                 {
-                    X++;
+                    X += Speed;
                 }
                 else
                 {
-                    X--;
+                    X -= Speed;
                 }
             }
             else
