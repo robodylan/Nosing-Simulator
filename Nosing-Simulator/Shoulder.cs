@@ -12,17 +12,36 @@ namespace Nosing_Simulator
 {
     class Shoulder
     {
-        public static int Sensitivity;
+        public static int Sensitivity, X, Y = 0;
         public static Sprite sprite;
-
+        public static float moveTo = 500;
         public static void Load()
         {
             //Load Shoulder Sprite
             sprite = new Sprite(new Texture(new Image("Content/Shoulder.png")), new IntRect(0, 0, 800, 600));
             Console.WriteLine("Shoulder Sprite Loaded");
             //Set Shoulder Variables
-            Sensitivity = 1;
+            Sensitivity = 20;
             Console.WriteLine("Set Shoulder Variables");
+        }
+
+        public static void Move()
+        {
+            if(X != moveTo)
+            {
+                if(X < moveTo)
+                {
+                    X++;
+                }
+                else
+                {
+                    X++;
+                }
+            }
+            else
+            {
+                moveTo = 100;
+            }
         }
     }
 }

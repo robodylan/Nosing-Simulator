@@ -12,7 +12,7 @@ namespace Nosing_Simulator
 {
     class Nose
     {
-        public static int Proximity, X, Y, Jitter;
+        public static int Proximity,X,Y,Jitter,Offset;
         public static Sprite sprite;
 
         public static void Load()
@@ -22,17 +22,12 @@ namespace Nosing_Simulator
             Console.WriteLine("Nose Sprite Loaded");
             //Set nose variables
             Proximity = 100;
-            X = +100;
+            X = 400;
             Y = 0;
+            Offset = X;
             Jitter = 10;
             Console.WriteLine("Set Nose Variables");
-        }
-
-        public static void Update()
-        {
-            //Update Position
-            sprite.Position = new Vector2f((float)X,(float)Y);
-            sprite.Rotation++;
+            sprite.Origin = new Vector2f((float)400, (float)300);
         }
     }
 }
